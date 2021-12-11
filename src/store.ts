@@ -1,20 +1,30 @@
 import { writable } from 'svelte/store';
 
 function createTitle() {
-	const { subscribe, set, update } = writable('Bruno Cassol');
+	const { subscribe, set } = writable('Bruno Cassol');
 
 	return {
-		subscribe,
+		subscribe: subscribe,
 		set: (value: string) => {
-			set(`${value} - Bruno Cassol`);
+			if (value) {
+				set(`${value} - Bruno Cassol`);
+			} else {
+				set(`Bruno Cassol`);
+			}
 		},
 		clear: () => {
 			set('Bruno Cassol');
-		}
+		},
 	};
 }
 
 export const title = createTitle();
 
-// todo: can this be an enum? This way we force active menu to always be something we expect
-export const activeMenu = writable('index');
+export enum MenuItems {
+	None = '',
+	Index = 'Index',
+	Portfolio = 'Portfolio',
+	Tools = 'Tools',
+}
+
+export const activeMenu = writable(MenuItems.None);

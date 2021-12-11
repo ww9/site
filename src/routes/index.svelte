@@ -1,27 +1,28 @@
 <script>
-	import { activeMenu } from '../store';
-	activeMenu.set('index');
+	import { activeMenu, MenuItems } from '../store';
+	activeMenu.set(MenuItems.Index);
 </script>
 
-<h1>Hi I'm Bruno, a software developer.</h1>
+<h1>👋 Hi! I make apps for the web</h1>
 <img src="/bruno.jpg" alt="me" class="me" />
-<p>And this is where I work.</p>
-<img src="/office.jpg" alt="office" class="office" />
-<p>Mostly doing full-stack web with C#, PHP and JavaScript.</p>
+
+<h1>Mostly with C#, TypeScript, JavaScript and PHP</h1>
 <img src="/workwith.png" alt="techologies i work with" class="workwith" />
-<p>I also have experience with other tech such as Linux, NGINX, Apache, PostgreSQL, MySQL, Go, Node, CSS/SASS, Bootstrap and to a lesser extent React and Vue. Currently having fun with Svelte and Kubernetes.</p>
-<p>I love people and I like helping them. Have experience with mentoring and tech leading. Teaching is one of the best ways to learn.</p>
+
+<h1>And this is where I work from</h1>
+<img src="/office.jpg" alt="office" class="office" />
 
 <style>
-	p {
-		font-size: large;
+	h1 {
+		font-weight: 100;
+		text-align: center;
 	}
 	.me {
 		border-radius: 50%;
 		width: 90%;
 		max-width: 342px;
 		height: auto;
-		margin: 0 auto;
+		margin: 0 auto 4rem auto;
 		display: block;
 	}
 
@@ -30,14 +31,14 @@
 		width: 90%;
 		max-width: 600px;
 		height: auto;
-		margin: 0 auto;
+		margin: 0 auto 4rem auto;
 		display: block;
 	}
 	.workwith {
 		width: 90%;
-		max-width: 416px;
+		max-width: 534px;
 		height: auto;
-		margin: 0 auto;
+		margin: 0 auto 4rem auto;
 		display: block;
 	}
 </style>

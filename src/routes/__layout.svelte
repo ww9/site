@@ -1,21 +1,6 @@
 <script>
-	import { prefetch } from '$app/navigation';
-	import { title, activeMenu } from '../store';
-
-	// Since sveltekit:prefetch didn't work for me, I made my own
-	function prefetchUrl(e) {
-		let link = e.target;
-		if (link.getAttribute('fetched')) return;
-		let url = link.getAttribute('href');
-		prefetch(url);
-		link.setAttribute('fetched', 'yep');
-	}
-
-	let activeMenuValue = 'index';
-
-	activeMenu.subscribe((value) => {
-		activeMenuValue = value;
-	});
+	import { prefetchUrl } from '$lib/prefetch_url';
+	import { title, activeMenu, MenuItems } from '../store';
 </script>
 
 <svelte:head>
@@ -30,13 +15,12 @@
 </svelte:head>
 
 <div class="container">
-	<a class="logo" href="/">Bruno Cassol<span class="description">/software developer</span></a>
+	<a class="logo" href="/">Bruno Cassol <span class="description">software engineer</span></a>
 	<div class="container-shadow">
 		<div class="menu">
-			<a href="/" class="active" on:mouseover={prefetchUrl} on:focus={prefetchUrl} on:touchstart={prefetchUrl} class:active={activeMenuValue == 'index'}>About</a>
-			<a href="/blog" on:mouseover={prefetchUrl} on:focus={prefetchUrl} on:touchstart={prefetchUrl} class:active={activeMenuValue == 'blog'}>Blog</a>
-			<a href="/portfolio" on:mouseover={prefetchUrl} on:focus={prefetchUrl} on:touchstart={prefetchUrl} class:active={activeMenuValue == 'portfolio'}>Portfolio</a>
-			<a href="/tools" on:mouseover={prefetchUrl} on:focus={prefetchUrl} on:touchstart={prefetchUrl} class:active={activeMenuValue == 'tools'}>Tools</a>
+			<a href="/" class="active" on:mouseover={prefetchUrl} on:focus={prefetchUrl} on:touchstart={prefetchUrl} class:active={$activeMenu == MenuItems.Index}>About</a>
+			<a href="/portfolio" on:mouseover={prefetchUrl} on:focus={prefetchUrl} on:touchstart={prefetchUrl} class:active={$activeMenu == MenuItems.Portfolio}>Portfolio</a>
+			<!-- <a href="/tools" on:mouseover={prefetchUrl} on:focus={prefetchUrl} on:touchstart={prefetchUrl} class:active={$activeMenu == MenuItems.Tools}>Tools</a> -->
 
 			<a target="_blank" class="social last" rel="noreferrer" title="Instagram" href="https://www.instagram.com/brunocassol">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -78,12 +62,17 @@
 	</div>
 </div>
 
+<div class="footer">
+	handcrafted with Svelte<br />source code available at <a href="https://github.com/ww9/site">github.com/ww9/site</a>
+</div>
+
 <style>
-	@import url('https://fonts.googleapis.com/css?family=Lato');
+	@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 	:global(html),
 	:global(body) {
-		font-family: Lato, sans-serif;
+		font-family: Nunito, sans-serif;
+		font-size: 24px;
 		box-sizing: content-box;
 		width: 100%;
 		height: 100%;
@@ -116,9 +105,10 @@
 	.logo,
 	.logo:visited {
 		color: #848484;
-		text-shadow: rgb(0 0 0) 2px 2px 1px;
+		text-shadow: #000 1px 1px 1px;
 		font-size: 40px;
-		display: inline-block;
+		display: block;
+		text-align: center;
 		padding: 0 0 20px 0;
 	}
 
@@ -128,12 +118,13 @@
 
 	.logo .description {
 		font-size: 50%;
+		display: block;
 	}
 
 	.container {
 		max-width: 1280px;
 		margin: 0 auto;
-		padding: 3rem 0;
+		padding: 1rem 0;
 	}
 
 	.container-shadow {
@@ -141,9 +132,22 @@
 		border-radius: 20px;
 	}
 
+	@media (min-width: 800px) {
+		.container {
+			padding: 3rem 0;
+		}
+		.logo {
+			display: inline-block;
+			text-align: left;
+		}
+		.logo .description {
+			display: inline-block;
+		}
+	}
+
 	.menu {
 		clear: both;
-		padding: 0;
+		padding: 5px;
 		margin: 0;
 		display: block;
 		overflow: hidden;
@@ -159,20 +163,28 @@
 		text-align: center;
 		padding: 13px 16px;
 		text-decoration: none;
+		margin: 7px 0 7px 7px;
+	}
+
+	.menu a.last {
+		margin-right: 7px;
 	}
 
 	.menu a.active,
 	.menu a:hover {
 		background-color: #111;
+		border-radius: 20px;
+	}
+
+	@media (min-width: 800px) {
+		.menu {
+			padding: 0;
+		}
 	}
 
 	.menu a.social {
 		float: right;
 		padding: 11px 11px 5px 11px;
-	}
-
-	.menu a.social.last {
-		padding-right: 15px;
 	}
 
 	.menu .social svg {
@@ -185,6 +197,9 @@
 		color: #ddd;
 		padding: 20px;
 		border-radius: 0 0 20px 20px;
+
+		/* fixes artifact observed in Chrome mobile emulator where a thin line appears below menu items*/
+		margin-top: -1px;
 	}
 
 	.content :global(h2) {
@@ -193,64 +208,13 @@
 
 	@media (min-width: 800px) {
 		.content {
-			padding: 50px;
+			padding: 2rem;
 		}
 	}
 
-	/* .blog_list_title {
-		display: block;
-		font-size: 2rem;
-		margin: 2rem 0 0 0;
+	.footer {
+		text-align: center;
+		color: #fff;
+		padding: 1rem;
 	}
-
-	.blog_list_title_date {
-		border: 1px solid #000;
-		font-size: 80%;
-		border-radius: 10px 20px;
-		padding: 0.1rem 0.4rem;
-		background-color: #848484;
-		color: #000;
-		white-space: nowrap;
-	}
-
-	.responsive_image {
-		width: auto;
-		height: auto;
-		max-height: 500px;
-		max-width: 100%;
-		border-radius: 5px;
-		display: block;
-		margin: 0 auto;
-	}
-
-	.portfolio_title {
-		margin-top: 5rem;
-	}
-
-	.portfolio_tags span {
-		border: 1px solid #000;
-		font-size: 80%;
-		border-radius: 10px 20px;
-		padding: 0.3rem 0.5rem;
-		background-color: #848484;
-		color: #000;
-		white-space: nowrap;
-		margin: 0 2px 5px 0;
-		display: inline-block;
-	}
-
-	.portfolio_image {
-		width: auto;
-		height: auto;
-		max-height: 500px;
-		max-width: 100%;
-		border-radius: 5px;
-		display: block;
-		margin: 0 auto;
-		transition: transform 0.2s;
-	}
-
-	.portfolio_image:hover {
-		transform: scale(1.005);
-	} */
 </style>
