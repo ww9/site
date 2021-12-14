@@ -22,7 +22,7 @@
 			<a href="/portfolio" on:mouseover={prefetchUrl} on:focus={prefetchUrl} on:touchstart={prefetchUrl} class:active={$activeMenu == MenuItems.Portfolio}>Portfolio</a>
 			<!-- <a href="/tools" on:mouseover={prefetchUrl} on:focus={prefetchUrl} on:touchstart={prefetchUrl} class:active={$activeMenu == MenuItems.Tools}>Tools</a> -->
 
-			<a target="_blank" class="social last" rel="noreferrer" title="Instagram" href="https://www.instagram.com/brunocassol">
+			<a target="_blank" class="social last" rel="noreferrer" title="Instagram" href="https://www.instagram.com/brunocassol/">
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 					<path
 						fill="currentColor"
