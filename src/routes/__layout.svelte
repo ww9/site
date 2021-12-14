@@ -67,7 +67,7 @@
 </div>
 
 <style>
-	@import url('https://fonts.googleapis.com/css?family=Nunito');
+	@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
 
 	:global(html),
 	:global(body) {
