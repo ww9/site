@@ -23,7 +23,10 @@
 <h2 class="portfolio_title">Chatbot</h2>
 <p>Developed and deployed chatbot app to gather pandemic statistics useful in researches and strategic planning.</p>
 <div class="portfolio_tags"><Tags tags={['2020', 'From-scratch', 'CSS', 'PHP', 'HTML', 'JavaScript', 'jQuery', 'Linux', 'NGINX', 'MariaDB']} /></div>
-<a href="/portfolio/chatbot_covid.png" target="_blank" title={imageTitle}><img alt="" src="/portfolio/chatbot_covid.png" class="portfolio_image" /></a>
+<div class="portfolio_chatbot_images">
+	<a href="/portfolio/chatbot_rj.png" target="_blank" title={imageTitle}><img alt="" src="/portfolio/chatbot_rj.png" class="portfolio_image" /></a>
+	<a href="/portfolio/chatbot_cuiaba.png" target="_blank" title={imageTitle}><img alt="" src="/portfolio/chatbot_cuiaba.png" class="portfolio_image" /></a>
+</div>
 
 <h2 class="portfolio_title">EdTech App</h2>
 <div class="portfolio_tags"><Tags tags={['2019', 'PHP', 'NGINX', 'From-scratch', 'Apache', 'Hiring', 'Mentoring', 'MariaDB', 'Linux', 'CI', 'Sonar', 'Unit Testing', 'Azure DevOps', 'Team Lead']} /></div>
@@ -90,6 +93,17 @@ stimulsoft report printing API server
 sigeec PHP
 -->
 <style>
+	.portfolio_chatbot_images {
+		display: flex;
+		align-items: center;
+		align-content: space-between;
+		justify-content: space-around;
+		flex-flow: row wrap;
+	}
+
+	.portfolio_chatbot_images a {
+		margin-bottom: 1rem;
+	}
 	.portfolio_title {
 		margin-top: 4rem;
 	}
