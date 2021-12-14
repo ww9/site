@@ -134,7 +134,7 @@
 
 	@media (min-width: 800px) {
 		.container {
-			padding: 3rem 0;
+			padding-top: 3rem;
 		}
 		.logo {
 			display: inline-block;
