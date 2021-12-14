@@ -4,6 +4,8 @@
 	"scripts": {
 		"dev": "svelte-kit dev --port 3333",
 		"build": "svelte-kit build",
+		"deploy": "scp -pr -P 48124 build/* root@167.71.127.126:/var/www/html/bcassol.com",
+		"prod": "npm run build && npm run deploy",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview --port 3333",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
