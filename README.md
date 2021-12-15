@@ -27,6 +27,16 @@ Uses SvelteKit and TypeScript.
 - TailwindUI
 - Oauth social login
 - Comments (depends on social login)
+- Twitter optiomized header:
+
+```html
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://...com/feature.webp" />
+<meta property="twitter:title" content="Title for Twitter" />
+<script type="application/ld+json">
+	{"headline":"The Web Is Fucked","description":"Large description for title for Twitter","@type":"WebSite","image":"https://...com/feature.webp","url":"https://...com","@context":"https://schema.org"}.
+</script>
+```
 
 # Ideas for blog posts
 
