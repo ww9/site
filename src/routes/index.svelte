@@ -4,7 +4,7 @@
 </script>
 
 <h3>👋 Hi! I make apps for the web</h3>
-<img src="/bruno.jpg" alt="me" class="me" />
+<img src="/london-400x424.png" alt="me" class="me" />
 
 <h3>Mostly with C#, TypeScript, JavaScript and PHP</h3>
 <img src="/workwith.png" alt="techologies i work with" class="workwith" />
