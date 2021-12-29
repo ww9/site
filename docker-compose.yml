@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: ./
+      target: dev
+    volumes:
+      - .:/src
+    working_dir: /src
+    command: bash -c "npm install && npm run dev"
+    ports:
+      - "4444:4444"
+    environment:
+      NODE_ENV: development
+      DEBUG: nodejs-docker-express:*
