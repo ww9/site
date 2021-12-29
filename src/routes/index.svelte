@@ -3,18 +3,19 @@
 	activeMenu.set(MenuItems.Index);
 </script>
 
-<h3>👋 Hi! I make apps for the web</h3>
+<p>👋 Hi! I make apps for the web</p>
 <img src="/london-400x424.png" alt="me" class="me" />
 
-<h3>Mostly with C#, TypeScript, JavaScript and PHP</h3>
+<p>Mostly with C#, TypeScript, JavaScript and PHP</p>
 <img src="/workwith.png" alt="techologies i work with" class="workwith" />
 
-<h3>And this is where I work from</h3>
+<p>And this is where I work from</p>
 <img src="/office.jpg" alt="office" class="office" />
 
 <style>
-	h3 {
+	p {
 		font-weight: 100;
+		font-size: 30px;
 		text-align: center;
 	}
 	.me {

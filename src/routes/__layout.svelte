@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { prefetchUrl } from '$lib/prefetch_url';
 	import { title, activeMenu, MenuItems } from '../store';
 </script>
@@ -63,7 +63,7 @@
 </div>
 
 <div class="footer">
-	handcrafted with Svelte<br />source code available at <a href="https://github.com/ww9/site">github.com/ww9/site</a>
+	made with Svelte<br />source code available at <a href="https://github.com/ww9/site">github.com/ww9/site</a>
 </div>
 
 <style>
@@ -72,7 +72,7 @@
 	:global(html),
 	:global(body) {
 		font-family: Nunito, sans-serif;
-		font-size: 18px;
+		font-size: 22px;
 		box-sizing: content-box;
 		width: 100%;
 		height: 100%;
@@ -122,7 +122,7 @@
 	}
 
 	.container {
-		max-width: 1280px;
+		max-width: 1800px;
 		margin: 0 auto;
 		padding: 1rem 0;
 	}
