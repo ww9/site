@@ -4,7 +4,7 @@
 	"scripts": {
 		"dev": "svelte-kit dev --port 4444 --open --host 0.0.0.0",
 		"build": "svelte-kit build",
-		"deploy": "scp -pr -P 48124 build/* root@167.71.127.126:/var/www/html/bcassol.com",
+		"deploy": "rsync -arvz -e 'ssh -p 48124' --progress --delete build/* root@167.71.127.126:/var/www/html/bcassol.com",
 		"prod": "npm run build && npm run deploy",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview --port 4444",
@@ -17,7 +17,8 @@
 		"docker-bash2": "docker run -it site_web /bin/bash",
 		"docker-host-npm-modules": "docker exec -it site_web_1 sh -c \"npm install\"",
 		"docker-dev": "docker-compose up --build",
-		"docker-npm-update": "docker exec -it site_web_1 bash -c \"npm update\""
+		"docker-npm-update": "docker exec -it site_web_1 bash -c \"npm update\"",
+		"docker-prod": "docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro site_web bash -c \"npm run prod\""
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
