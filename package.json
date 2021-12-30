@@ -17,7 +17,7 @@
 		"docker-dev": "docker-compose up --build",
 		"docker-host-npm-modules": "docker-compose run web sh -c \"npm install\"",
 		"docker-npm-update": "docker-compose run web sh -c \"npm update\"",
-		"docker-prod": "docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro site_web bash -c \"npm run prod\""
+		"docker-prod": "docker-compose build && docker run -it --rm -v ~/.ssh/id_rsa:/root/.ssh/id_rsa:ro site_web bash -c \"npm run prod\""
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
